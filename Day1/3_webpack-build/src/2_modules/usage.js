@@ -19,7 +19,9 @@
 // console.log("Square: ", lib.square(20));
 
 // Case 3 - Named Import
-import square, { check, test } from './lib';
-console.log("Square: ", square(20));
-console.log("Check: ", check(20));
-console.log("Test: ", test(20));
+// import square, { check, test } from './lib';
+// console.log("Square: ", square(20));
+// console.log("Check: ", check(20));
+// console.log("Test: ", test(20));
+
+import "./lib";
