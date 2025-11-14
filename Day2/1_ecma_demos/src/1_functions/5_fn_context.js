@@ -80,19 +80,28 @@ let p2 = {
 //     }
 // }
 
-function Person() {
-    this.age = 0;
-    this.grow = () => {
+var person = {
+    age: 0,
+    grow: () => {
+        console.log(this);
         this.age += 1;
         console.log(this.age);
     }
 }
 
-const person = new Person();
+// function Person() {
+//     this.age = 0;
+//     this.grow = () => {
+//         this.age += 1;
+//         console.log(this.age);
+//     }
+// }
 
-// person.grow();
-// person.grow();
-// person.grow();
+// const person = new Person();
+
+person.grow();
+person.grow();
+person.grow();
 
 // document.getElementById("btn").addEventListener("click", person.grow.bind(person));
 
@@ -101,4 +110,4 @@ const person = new Person();
 // }, 2000);
 
 // setInterval(person.grow.bind(person), 2000);
-setInterval(person.grow, 2000);
+// setInterval(person.grow, 2000);
