@@ -10,7 +10,7 @@
 // import './2_objects/1_custom_types';
 // import './2_objects/2_using_prototype';
 // import './2_objects/3_class';
-import './2_objects/4_inheritance';
+// import './2_objects/4_inheritance';
 
-// import './3_async/dom-handler';
+import './3_async/dom-handler';
 
