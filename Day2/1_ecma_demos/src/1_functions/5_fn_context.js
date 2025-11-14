@@ -83,7 +83,6 @@ let p2 = {
 var person = {
     age: 0,
     grow: () => {
-        console.log(this);
         this.age += 1;
         console.log(this.age);
     }

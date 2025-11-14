@@ -5,5 +5,10 @@
 // import './1_functions/5_fn_context';
 // import './1_functions/6_closures';
 // import './1_functions/7_fn_currying';
-import './1_functions/8_hof';
+// import './1_functions/8_hof';
+
+// import './2_objects/1_custom_types';
+// import './2_objects/2_using_prototype';
+import './2_objects/3_class';
+
 
