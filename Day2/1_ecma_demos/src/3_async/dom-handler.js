@@ -45,13 +45,18 @@ btnArea.appendChild(button);
 //     }
 // });
 
+// button.addEventListener('click', async () => {
+//     try {
+//         const data = await postApiClient.getAllPostsAsync();
+//         generateRows(data);
+//     } catch(eMsg) {
+//         console.error(eMsg);
+//     }
+// });
+
 button.addEventListener('click', async () => {
-    try {
-        const data = await postApiClient.getAllPostsAsync();
-        generateRows(data);
-    } catch(eMsg) {
-        console.error(eMsg);
-    }
+    const data = await postApiClient.getAllPostsAsync();
+    generateRows(data);
 });
 
 function generateRows(data) {
