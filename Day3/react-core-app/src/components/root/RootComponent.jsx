@@ -14,7 +14,8 @@
 
 import { useState } from "react";
 // import ComponentWithProps from "../7_comp-props/ComponentWithProps";
-import PropTypesComponent from "../8_prop-types/PropTypesComponent";
+// import PropTypesComponent from "../8_prop-types/PropTypesComponent";
+import ComponentWithBehavior from "../9_comp-methods/ComponentWithBehavior";
 
 const RootComponent = () => {
     const [data] = useState({ id: 1, name: "Manish", address: { city: "Pune", state: "MH" } });
@@ -28,7 +29,8 @@ const RootComponent = () => {
             {/* <ComponentWithProps id={data.id} name={data.name} address={data.address} /> */}
             {/* <ComponentWithProps {...data} /> */}
 
-            <PropTypesComponent />
+            {/* <PropTypesComponent /> */}
+            <ComponentWithBehavior />
         </div>
     );
 };
