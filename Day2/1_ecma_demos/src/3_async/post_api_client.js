@@ -16,7 +16,9 @@ const postApiClient = {
         return new Promise((resolve, reject) => {
             fetch(url).then(response => {
                 response.json().then(data => {
-                    resolve(data);
+                    setTimeout(() => {
+                        resolve(data);
+                    }, 5000);
                 }).catch(errror => {
                     reject("Parsing Error");
                 })
@@ -26,10 +28,12 @@ const postApiClient = {
         });
     },
     getAllPostsAsync: async function () {
-        try { 
+        try {
+
             const response = await fetch(url);
             const data = await response.json();
-            return data;
+            // return data;
+
         } catch (error) {
             return new Error(error.message)
         }
