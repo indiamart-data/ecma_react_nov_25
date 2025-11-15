@@ -6,7 +6,7 @@ class ComponentOne extends Component {
         return (
             <>
                 <h1 className='text-primary'>Hello from Component One</h1>
-                <h1 className={styles.card}>From Component One</h1>
+                <h1 className={`${styles.card} text-primary`}>From Component One</h1>
             </>
         );
     }
