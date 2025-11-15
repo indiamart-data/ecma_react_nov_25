@@ -44,7 +44,7 @@ const ComponentWithBehavior = () => {
     // With Empty Array, useEffect executes only on Component Mount
     // useEffect(() => { }, []);
 
-    // useEffect executes only on Component Mount and when state.count changes (component update)
+    // useEffect executes Component Mount and when state.count changes (component update)
     useEffect(() => {
         console.log("State Updated: ", state);
     }, [state.count]);
