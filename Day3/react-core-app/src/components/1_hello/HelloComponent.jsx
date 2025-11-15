@@ -91,12 +91,34 @@
 //     );
 // }
 
-const HelloComponent = () => (
-    <>
-        <h1 className="">Hello World!</h1>
-        <h1 className="">Singleline Arrow Function!</h1>
-    </>
-);
+// const HelloComponent = () => (
+//     <>
+//         <h1 className="">Hello World!</h1>
+//         <h1 className="">Singleline Arrow Function!</h1>
+//     </>
+// );
 
+
+// export default HelloComponent;
+
+// ----------------------------------------- Using Global CSS
+// const HelloComponent = () => (
+//     <>
+//         <h1 className="red">Hello World!</h1>
+//         <h1 className="red">Singleline Arrow Function!</h1>
+//     </>
+// );
+
+const HelloComponent = () => (
+    <div className="container">
+        <h1 className="text-primary">Hello World!</h1>
+        <h1 className="text-success">Singleline Arrow Function!</h1>
+        <h2 className="text-warning">
+            Activity Icon
+            <i className="bi bi-activity"></i>
+        </h2>
+        <button className="btn btn-primary">Click Me</button>
+    </div>
+);
 
 export default HelloComponent;
