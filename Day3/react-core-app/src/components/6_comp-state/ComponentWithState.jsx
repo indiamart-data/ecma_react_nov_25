@@ -7,8 +7,6 @@
 //         console.log("Ctor, state: ", this.state);
 //     }
 
-import { useState } from "react";
-
 //     render() {
 //         console.log("Render, state: ", this.state);
 
@@ -21,6 +19,8 @@ import { useState } from "react";
 //         );
 //     }
 // }
+
+import { useState } from "react";
 
 const ComponentWithState = function () {
     const [name, setName] = useState("Manish");

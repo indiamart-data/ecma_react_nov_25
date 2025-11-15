@@ -10,15 +10,22 @@
 // import ComponentOne from '../5_css-modules/comp-one/ComponentOne';
 // import ComponentTwo from '../5_css-modules/comp-two/ComponentTwo';
 
-import ComponentWithState from '../6_comp-state/ComponentWithState';
+// import ComponentWithState from '../6_comp-state/ComponentWithState';
+
+import { useState } from "react";
+import ComponentWithProps from "../7_comp-props/ComponentWithProps";
 
 const RootComponent = () => {
+    const [data] = useState({ id: 1, name: "Manish", address: { city: "Pune", state: "MH" } });
+    
     return (
         <div className='container'>
             {/* <ComponentOne />
             <ComponentTwo /> */}
 
-            <ComponentWithState />
+            {/* <ComponentWithState /> */}
+            {/* <ComponentWithProps id={data.id} name={data.name} address={data.address} /> */}
+            <ComponentWithProps {...data} />
         </div>
     );
 };
