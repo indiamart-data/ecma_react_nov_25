@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Counter } from './Counter';
+import { CounterSibling } from './CounterSibling';
 
 const CounterRoot = () => {
     const counterRef = useRef(null);
@@ -24,11 +25,13 @@ const CounterRoot = () => {
         <div>
             {message && <h2 className='text-center'>{message}</h2>}
             <Counter ref={counterRef} onMax={updateMessage} />
-            <div className="d-grid gap-2 mx-auto col-6 mt-4">
+            {/* <div className="d-grid gap-2 mx-auto col-6 mt-4">
                 <button className="btn btn-warning" onClick={p_reset}>
                     <span className='fs-4'>Parent Reset</span>
                 </button>
-            </div>
+            </div> */}
+            <hr className='mt-4'/>
+            <CounterSibling onMax={updateMessage}/>
         </div>
     );
 }
