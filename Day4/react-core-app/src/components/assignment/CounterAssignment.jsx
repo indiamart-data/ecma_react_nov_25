@@ -159,7 +159,7 @@ const Counter = ({ interval = 1 }) => {
         clickCount.current = 0;
         setCount(0);
         setFlag(false);
-    }, [interval]);
+    }, []);
 
     return (
         <>
@@ -204,6 +204,11 @@ const CounterAssignment = () => {
     return (
         <div>
             <Counter />
+            <div className="d-grid gap-2 mx-auto col-6 mt-4">
+                <button className="btn btn-warning" >
+                    <span className='fs-4'>Parent Reset</span>
+                </button>
+            </div>
         </div>
     );
 }
