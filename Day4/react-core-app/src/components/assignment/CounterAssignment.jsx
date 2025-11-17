@@ -123,9 +123,9 @@
 
 // ----------------------------------------------------- Functional
 import PropTypes from 'prop-types';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 
-const Counter = ({ interval = 1 }) => {
+const Counter = React.forwardRef(({ interval = 1, onMax }, ref) => {
     const [count, setCount] = useState(0);
     const [flag, setFlag] = useState(false);
 
@@ -147,6 +147,10 @@ const Counter = ({ interval = 1 }) => {
         manageClickCount();
     }, [count, manageClickCount]);
 
+    useEffect(()=>{
+        onMax(flag);
+    }, [flag]);
+
     const inc = useCallback(() => {
         setCount(prev => prev + interval);
     }, [interval]);
@@ -160,6 +164,10 @@ const Counter = ({ interval = 1 }) => {
         setCount(0);
         setFlag(false);
     }, []);
+
+    useImperativeHandle(ref, () => {
+        return { reset, flag };
+    });
 
     return (
         <>
@@ -176,7 +184,7 @@ const Counter = ({ interval = 1 }) => {
             </div>
         </>
     );
-}
+});
 
 Counter.propTypes = {
     interval: PropTypes.number
@@ -201,11 +209,30 @@ const CounterControls = React.memo(({ flag, inc, dec, reset }) => {
 });
 
 const CounterAssignment = () => {
+    const counterRef = useRef(null);
+    const [message, setMessage] = useState("");
+
+    const updateMessage = (flag) => {
+        if (flag)
+            setMessage("Max click reached, please reset to continue...")
+        else
+            setMessage("");
+    }
+
+    const p_reset = () => {
+        console.log(counterRef);
+        if (counterRef.current) {
+            counterRef.current.flag = true;
+            // counterRef.current.reset();
+        }
+    }
+
     return (
         <div>
-            <Counter />
+            {message && <h2 className='text-center'>{message}</h2>}
+            <Counter ref={counterRef} onMax={updateMessage}/>
             <div className="d-grid gap-2 mx-auto col-6 mt-4">
-                <button className="btn btn-warning" >
+                <button className="btn btn-warning" onClick={p_reset}>
                     <span className='fs-4'>Parent Reset</span>
                 </button>
             </div>
