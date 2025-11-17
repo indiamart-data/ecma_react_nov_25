@@ -123,7 +123,7 @@
 
 // ----------------------------------------------------- Functional
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const Counter = ({ interval = 1 }) => {
     const [count, setCount] = useState(0);
@@ -131,28 +131,30 @@ const Counter = ({ interval = 1 }) => {
 
     let clickCount = useRef(0);
 
-    const manageClickCount = () => {
+    const manageClickCount = useCallback(() => {
         clickCount.current++;
         if (clickCount.current > 9) {
             setFlag(true);
         }
-    }
+    }, []);
 
-    const inc = () => {
+    const inc = useCallback(() => {
         setCount(prev => prev + interval);
-        manageClickCount();
-    };
+    }, [interval]);
 
-    const dec = () => {
+    const dec = useCallback(() => {
         setCount(prev => prev - interval);
-        manageClickCount();
-    }
+    }, [interval]);
 
-    const reset = () => {
+    const reset = useCallback(() => {
         clickCount.current = 0;
         setCount(0);
         setFlag(false);
-    }
+    }, [interval]);
+
+    useEffect(()=>{
+        manageClickCount();
+    }, [count]);
 
     return (
         <>
