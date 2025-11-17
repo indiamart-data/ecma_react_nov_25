@@ -130,6 +130,7 @@ const Counter = ({ interval = 1 }) => {
     const [flag, setFlag] = useState(false);
 
     let clickCount = useRef(0);
+    let firstRender = useRef(true);
 
     const manageClickCount = useCallback(() => {
         clickCount.current++;
@@ -137,6 +138,14 @@ const Counter = ({ interval = 1 }) => {
             setFlag(true);
         }
     }, []);
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false;
+            return;
+        }
+        manageClickCount();
+    }, [count, manageClickCount]);
 
     const inc = useCallback(() => {
         setCount(prev => prev + interval);
@@ -151,10 +160,6 @@ const Counter = ({ interval = 1 }) => {
         setCount(0);
         setFlag(false);
     }, [interval]);
-
-    useEffect(()=>{
-        manageClickCount();
-    }, [count]);
 
     return (
         <>
