@@ -166,7 +166,7 @@ const Counter = React.forwardRef(({ interval = 1, onMax }, ref) => {
     }, []);
 
     useImperativeHandle(ref, () => {
-        return { reset, flag };
+        return { reset };
     });
 
     return (
