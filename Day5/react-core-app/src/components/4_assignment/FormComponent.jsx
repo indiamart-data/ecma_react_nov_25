@@ -1,3 +1,4 @@
+import React from "react";
 import TextInput from "../common/TextInput";
 
 const FormComponent = (props) => {
@@ -29,4 +30,4 @@ const FormComponent = (props) => {
     );
 };
 
-export default FormComponent;
+export default React.memo(FormComponent);
