@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import ErrorBoundaryHOC from "../common/ErrorBoundaryHOC";
 import TextInput from "../common/TextInput";
 
 const CalculatorOne = () => {
@@ -201,7 +202,7 @@ const CalculatorFour = () => {
 };
 
 const CalculatorAssignment = () => {
-    
+    throw new Error("Some Error");
     return (
         <div>
             {/* <CalculatorOne /> */}
@@ -212,4 +213,4 @@ const CalculatorAssignment = () => {
     );
 }
 
-export default CalculatorAssignment;
+export default ErrorBoundaryHOC(CalculatorAssignment);
