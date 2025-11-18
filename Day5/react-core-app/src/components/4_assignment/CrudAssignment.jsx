@@ -90,7 +90,7 @@
 //         return (
 //             <div>
 //                 <FormComponent employee={this.state.employee} changeEmployee={this.changeEmployee} saveEmployee={this.saveEmployee}
-//                     disabled={this.state.formDisabled} />
+//                     resetEmployee={this.resetEmployee} disabled={this.state.formDisabled} />
 //                 <hr />
 //                 <DataTable items={this.state.employees} onSelect={this.selectEmployee} onDelete={this.removeEmployee}>
 //                     <h5 className="text-primary text-uppercase font-weight-bold">Employees Table</h5>
@@ -228,6 +228,7 @@ const CrudAssignment = () => {
                 employee={employee}
                 changeEmployee={changeEmployee}
                 saveEmployee={saveEmployee}
+                resetEmployee={resetEmployee}
                 disabled={formDisabled}
             />
 
