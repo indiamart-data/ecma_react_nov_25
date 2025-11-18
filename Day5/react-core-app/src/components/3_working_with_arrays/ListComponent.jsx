@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DataTable from '../common/DataTable';
 
 const ListItem = ({ item }) => <li className='list-group-item'>{item.name}</li>
 
@@ -35,7 +36,12 @@ const Tr = ({ item }) => {
 const TableComponnet = ({ items, children }) => {
     return (
         <>
-            {children && children}
+            {/* {children && children} */}
+            {
+                children
+                    ? children
+                    : null
+            }
             <hr />
             <table className='table table-striped'>
                 <thead>
@@ -68,7 +74,7 @@ const ListRoot = () => {
         { id: 5, name: "Abhishek" }
     ]);
 
-     const [posts] = useState([
+    const [posts] = useState([
         {
             userId: 1,
             id: 1,
@@ -86,12 +92,19 @@ const ListRoot = () => {
     return (
         <>
             {/* <ListComponent items={employees} /> */}
-            <TableComponnet items={employees}>
+            {/* <TableComponnet items={employees}>
                 <h3 className='text-center text-info'>Employees Table</h3>
             </TableComponnet>
             <TableComponnet items={posts}>
                 <h3 className='text-center text-info'>Posts Table</h3>
-            </TableComponnet>
+            </TableComponnet> */}
+
+            <DataTable items={employees}>
+                <h3 className='text-center text-info'>Employees Table</h3>
+            </DataTable>
+            <DataTable items={posts}>
+                <h3 className='text-center text-info'>Posts Table</h3>
+            </DataTable>
         </>
     );
 };
