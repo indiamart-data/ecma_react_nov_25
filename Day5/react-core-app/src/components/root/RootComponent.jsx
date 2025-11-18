@@ -1,11 +1,14 @@
 // import ControlledVsUncontrolledComponent from "../1_controlled-uncontrolled/ControlledVsUncontrolledComponent";
 import CalculatorAssignment from "../2_assignment/CalculatorAssignment";
+import ErrorBoundary from "../common/ErrorBoundary";
 
 const RootComponent = () => {
     return (
         <div className='container'>
-            {/* <ControlledVsUncontrolledComponent /> */}
-            <CalculatorAssignment />
+            <ErrorBoundary>
+                {/* <ControlledVsUncontrolledComponent /> */}
+                <CalculatorAssignment />
+            </ErrorBoundary>
         </div>
     );
 };

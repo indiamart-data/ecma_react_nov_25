@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 const TextInput = ({ name, label, placeholder, value, readOnly, onChange }) => {
+    throw new Error("Some Error");
     return (
         <div className="form-group mb-1">
             <label className="mb-2" htmlFor={name}>{label}</label>
