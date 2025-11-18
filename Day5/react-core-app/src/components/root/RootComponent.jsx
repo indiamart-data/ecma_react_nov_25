@@ -2,7 +2,8 @@
 // import CalculatorAssignment from "../2_assignment/CalculatorAssignment";
 // import ListRoot from "../3_working_with_arrays/ListComponent";
 // import CrudAssignment from "../4_assignment/CrudAssignment";
-import CrudAssignmentReducer from "../4_assignment/CrudAssignmentReducer";
+// import CrudAssignmentReducer from "../4_assignment/CrudAssignmentReducer";
+import HookFormDemo from "../5_hook_form_demo/HookFormDemo";
 import ErrorBoundary from "../common/ErrorBoundary";
 
 const RootComponent = () => {
@@ -13,7 +14,8 @@ const RootComponent = () => {
                 {/* <CalculatorAssignment />  */}
                 {/* <ListRoot /> */}
                 {/* <CrudAssignment /> */}
-                <CrudAssignmentReducer />
+                {/* <CrudAssignmentReducer /> */}
+                <HookFormDemo />
             </ErrorBoundary>
         </div>
     );
