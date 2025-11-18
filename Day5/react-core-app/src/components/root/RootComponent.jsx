@@ -1,6 +1,7 @@
 // import ControlledVsUncontrolledComponent from "../1_controlled-uncontrolled/ControlledVsUncontrolledComponent";
 // import CalculatorAssignment from "../2_assignment/CalculatorAssignment";
-import ListRoot from "../3_working_with_arrays/ListComponent";
+// import ListRoot from "../3_working_with_arrays/ListComponent";
+import CrudAssignment from "../4_assignment/CrudAssignment";
 import ErrorBoundary from "../common/ErrorBoundary";
 
 const RootComponent = () => {
@@ -9,7 +10,8 @@ const RootComponent = () => {
             <ErrorBoundary>
                 {/* <ControlledVsUncontrolledComponent /> */}
                 {/* <CalculatorAssignment />  */}
-                <ListRoot />
+                {/* <ListRoot /> */}
+                <CrudAssignment />
             </ErrorBoundary>
         </div>
     );

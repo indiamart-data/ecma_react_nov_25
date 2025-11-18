@@ -1,3 +1,5 @@
+import React from "react";
+
 const Th = ({ item }) => {
     const allHeads = Object.keys(item).concat(['', 'actions', '']);
 
@@ -12,11 +14,32 @@ const Th = ({ item }) => {
     );
 }
 
-const Tr = ({ item }) => {
+const Tr = ({ item, onSelect, onDelete }) => {
     const allValues = Object.values(item).concat([
-        <a href="/#" className='text-info'>Details</a>,
-        <a href="/#" className='text-warning'>Edit</a>,
-        <a href="/#" className='text-danger'>Delete</a>
+        <a href="/#" className='text-info' onClick={
+            (e) => {
+                e.preventDefault();
+                if (onSelect) {
+                    onSelect(item, false);
+                }
+            }
+        }>Details</a>,
+        <a href="/#" className='text-warning' onClick={
+            (e) => {
+                e.preventDefault();
+                if (onSelect) {
+                    onSelect(item, true);
+                }
+            }
+        }>Edit</a>,
+        <a href="/#" className='text-danger' onClick={
+            (e) => {
+                e.preventDefault();
+                if (onDelete) {
+                    onDelete(item.id);
+                }
+            }
+        }>Delete</a>
     ]);
 
     const tds = allValues.map((item, index) => {
@@ -30,16 +53,16 @@ const Tr = ({ item }) => {
     );
 }
 
-const DataTable = ({ items, children }) => {
+const DataTable = ({ items, children, onSelect, onDelete }) => {
     if (items && items.length) {
         const [item] = items;
         var headers = <Th item={item} />;
-        var trs = items.map((item) => <Tr key={item.id} item={item} />);
+        var trs = items.map((item) => <Tr key={item.id} item={item} onSelect={onSelect} onDelete={onDelete} />);
     }
 
     return (
         <>
-            {children && children}
+            {React.isValidElement(children) && children}
             <hr />
             <table className='table table-striped'>
                 <thead>

@@ -100,7 +100,13 @@ const ListRoot = () => {
             </TableComponnet> */}
 
             <DataTable items={employees}>
-                <h3 className='text-center text-info'>Employees Table</h3>
+                <h3 className="text-center text-white py-2 rounded"
+                    style={{
+                        background: "linear-gradient(to right, #06b6d4, #3b82f6)",
+                        letterSpacing: "1px"
+                    }}>
+                    Employees Table
+                </h3>
             </DataTable>
             <DataTable items={posts}>
                 <h3 className='text-center text-info'>Posts Table</h3>
