@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+import AppRoutes from '../../routes/index';
 import './NavigationComponent.css';
 
 var logo = require('../../logo.svg').default;
@@ -7,10 +9,10 @@ const NavigationComponent = () => {
         <>
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
                 <div className="container-fluid">
-                    <a className="navbar-brand d-flex flex-column align-items-center" href="/">
+                    <NavLink className="navbar-brand d-flex flex-column align-items-center" to="/">
                         <img src={logo} alt="React" width="40" height="28" className="d-inline-block align-text-top" />
                         React Routing - v6
-                    </a>
+                    </NavLink>
 
                     <button type="button" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#myNavbar">
                         <span className="navbar-toggler-icon"></span>
@@ -19,46 +21,50 @@ const NavigationComponent = () => {
                     <div className="collapse navbar-collapse" id="myNavbar">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/">
                                     <i className="bi bi-house-fill"></i>
                                     <span>Home</span>
-                                </a>
+                                </NavLink>
                             </li>
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/about">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/about">
                                     <i className="bi bi-file-person-fill"></i>
                                     <span>About</span>
-                                </a>
+                                </NavLink>
                             </li>
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/products">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/products">
                                     <i className="bi bi-file-earmark-ppt-fill"></i>
                                     <span>Products</span>
-                                </a>
+                                </NavLink>
                             </li>
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/admin">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/admin">
                                     <i className="bi bi-shield-lock-fill"></i>
                                     <span>Admin</span>
-                                </a>
+                                </NavLink>
                             </li>
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/assign">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/assign">
                                     <i className="bi bi-flag-fill"></i>
                                     <span>Assignment</span>
-                                </a>
+                                </NavLink>
                             </li>
 
                             <li className="nav-item px-3">
-                                <a className="nav-link d-flex flex-column align-items-center" href="/login">
+                                <NavLink className="nav-link d-flex flex-column align-items-center" to="/login">
                                     <i className="bi bi-person-square"></i>
                                     <span>Login</span>
-                                </a>
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
+            <>
+                {AppRoutes}
+            </>
         </>
     );
 };
