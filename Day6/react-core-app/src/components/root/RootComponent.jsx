@@ -1,6 +1,7 @@
 // import CrudAssignment from "../1_assignment/CrudAssignment";
 // import CrudAssignmentReducer from "../1_assignment/CrudAssignmentReducer";
-import HookFormDemo from "../2_hook_form_zod_demo/HookFormDemo";
+// import HookFormDemo from "../2_hook_form_zod_demo/HookFormDemo";
+import AjaxComponent from "../3_ajax/AjaxComponent";
 import ErrorBoundary from "../common/ErrorBoundary";
 
 const RootComponent = () => {
@@ -9,7 +10,8 @@ const RootComponent = () => {
             <ErrorBoundary>
                 {/* <CrudAssignment /> */}
                 {/* <CrudAssignmentReducer /> */}
-                <HookFormDemo />
+                {/* <HookFormDemo /> */}
+                <AjaxComponent />
             </ErrorBoundary>
         </div>
     );
