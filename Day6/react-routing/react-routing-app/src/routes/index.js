@@ -20,6 +20,8 @@ const HomeComponent = lazy(() => import("../components/home/HomeComponent"));
 const LoginComponent = lazy(() => import("../components/login/LoginComponent"));
 const NoMatchComponent = lazy(() => import("../components/no-match/NoMatchComponent"));
 const ProductsComponent = lazy(() => import("../components/products/ProductsComponent"));
+const ProductNotSelectedComponent = lazy(() => import("../components/products/ProductNotSelectedComponent"));
+const ProductDetailsComponent = lazy(() => import("../components/products/ProductDetailsComponent"));
 
 export default (
     <Suspense fallback={<LoaderAnimation />}>
@@ -31,8 +33,8 @@ export default (
                     <ProductsComponent />
                 </ProductsProvider>
             }>
-                <Route path="" element={<HomeComponent />} />
-                <Route path=":productId" element={<HomeComponent />} />
+                <Route path="" element={<ProductNotSelectedComponent />} />
+                <Route path=":productId" element={<ProductDetailsComponent />} />
             </Route>
             <Route path="/admin" element={<AdminComponent />} />
             <Route path="/assign" element={<AssignComponent />} />
