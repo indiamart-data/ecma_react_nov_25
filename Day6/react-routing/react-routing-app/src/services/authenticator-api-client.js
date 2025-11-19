@@ -1,3 +1,5 @@
+const url = process.env.REACT_APP_AUTHENTICATOR_API_URL;
+
 const authenticatorClient = {
     isAuthenticated: false,
 
