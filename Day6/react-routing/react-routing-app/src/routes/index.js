@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // Eager Loading
 // import AboutComponent from "../components/about/AboutComponent";
@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import LoaderAnimation from "../components/common/LoaderAnimation";
 import ProductsAPIProvider from "../contexts/ProductsAPIProvider";
 import ProductsProvider from "../contexts/ProductsContext";
+import authenticatorClient from "../services/authenticator-api-client";
 
 // Lazy Loading
 const AboutComponent = lazy(() => import("../components/about/AboutComponent"));
@@ -23,6 +24,17 @@ const NoMatchComponent = lazy(() => import("../components/no-match/NoMatchCompon
 const ProductsComponent = lazy(() => import("../components/products/ProductsComponent"));
 const ProductNotSelectedComponent = lazy(() => import("../components/products/ProductNotSelectedComponent"));
 const ProductDetailsComponent = lazy(() => import("../components/products/ProductDetailsComponent"));
+
+// Route Guard
+const SecuredRoute = ({ children }) => {
+    let location = useLocation();
+
+    if (authenticatorClient.isAuthenticated) {
+        return children;
+    } else {
+        return <Navigate to="/login" state={{ from: location }} />
+    }
+}
 
 export default (
     <Suspense fallback={<LoaderAnimation />}>
@@ -38,9 +50,11 @@ export default (
                 <Route path=":productId" element={<ProductDetailsComponent />} />
             </Route>
             <Route path="/admin" element={
-                <ProductsAPIProvider>
-                    <AdminComponent />
-                </ProductsAPIProvider>
+                <SecuredRoute>
+                    <ProductsAPIProvider>
+                        <AdminComponent />
+                    </ProductsAPIProvider>
+                </SecuredRoute>
             } />
             <Route path="/assign" element={<AssignComponent />} />
             <Route path="/login" element={<LoginComponent />} />
