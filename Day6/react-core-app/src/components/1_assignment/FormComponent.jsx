@@ -35,13 +35,13 @@
 // export default React.memo(FormComponent);
 
 // ----------------------------------------------------
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import TextInputHookForm from "../common/TextInputHookForm";
 
 const FormComponent = ({ employee, saveEmployee, resetEmployee, disabled }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
-        defaultValues: employee
+        defaultValues: employee,
     });
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const FormComponent = ({ employee, saveEmployee, resetEmployee, disabled }) => {
 
                         <div className="d-grid gap-2 mx-auto mt-3">
                             <button type="submit" className="btn btn-primary">Submit</button>
-                            <button type="reset" className="btn btn-warning" onClick={resetEmployee}>Reset</button>
+                            <button type="button" className="btn btn-warning" onClick={resetEmployee}>Reset</button>
                         </div>
                     </fieldset>
                 </form>

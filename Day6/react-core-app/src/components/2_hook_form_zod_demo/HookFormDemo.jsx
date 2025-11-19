@@ -1,7 +1,18 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+// 1. Define Zod Schema
+const userSchema = z.object({
+    name: z.string().min(1, "Name is required"),
+    email: z.string().min(1, "Email is required").email("Invalid email format"),
+    password: z.string().min(1, "Password is required").min(6, "Password must be at least 6 characters")
+});
 
 const HookFormDemo = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(userSchema)
+    });
 
     const onSubmit = (data) => {
         console.log("Form Data: ", data);
@@ -23,7 +34,7 @@ const HookFormDemo = () => {
                                     <label htmlFor="name" className="form-label">Name</label>
                                     <input
                                         id="name"
-                                        {...register("name", { required: "Name is required" })}
+                                        {...register("name")}
                                         placeholder="Enter your name"
                                         className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                                     />
@@ -41,10 +52,7 @@ const HookFormDemo = () => {
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input id="email"
-                                        {...register("email", {
-                                            required: "Email is required",
-                                            pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" }
-                                        })}
+                                        {...register("email")}
                                         type="email"
                                         placeholder="Enter your email"
                                         className={`form-control ${errors.email ? 'is-invalid' : ''}`} />
@@ -61,10 +69,7 @@ const HookFormDemo = () => {
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input id="password"
-                                        {...register("password", {
-                                            required: "Password is required",
-                                            minLength: { value: 6, message: "Password must be at least 6 characters" }
-                                        })}
+                                        {...register("password")}
                                         type="password"
                                         placeholder="Enter password"
                                         className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
