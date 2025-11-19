@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 // import NoMatchComponent from "../components/no-match/NoMatchComponent";
 // import ProductsComponent from "../components/products/ProductsComponent";
 import LoaderAnimation from "../components/common/LoaderAnimation";
+import ProductsAPIProvider from "../contexts/ProductsAPIProvider";
 import ProductsProvider from "../contexts/ProductsContext";
 
 // Lazy Loading
@@ -36,7 +37,11 @@ export default (
                 <Route path="" element={<ProductNotSelectedComponent />} />
                 <Route path=":productId" element={<ProductDetailsComponent />} />
             </Route>
-            <Route path="/admin" element={<AdminComponent />} />
+            <Route path="/admin" element={
+                <ProductsAPIProvider>
+                    <AdminComponent />
+                </ProductsAPIProvider>
+            } />
             <Route path="/assign" element={<AssignComponent />} />
             <Route path="/login" element={<LoginComponent />} />
             <Route path="*" element={<NoMatchComponent />} />
