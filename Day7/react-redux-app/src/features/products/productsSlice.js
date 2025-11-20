@@ -63,6 +63,22 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async (_
   }
 });
 
+export const insertProduct = createAsyncThunk("products/insertProduct", async (product, { rejectWithValue }) => {
+  try {
+    return await productAPIClient.insertProduct(product);
+  } catch (error) {
+    return rejectWithValue(error.message || 'Error occurred while adding product');
+  }
+});
+
+export const updateProduct = createAsyncThunk("products/updateProduct", async (product, { rejectWithValue }) => {
+  try {
+    return await productAPIClient.updateProduct(product);
+  } catch (error) {
+    return rejectWithValue(error.message || 'Error occurred while updating product');
+  }
+});
+
 const productsState = {
   items: [],
   status: 'idle',
@@ -87,6 +103,16 @@ export const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
+      })
+      .addCase(insertProduct.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const { id, ...updatedProduct } = action.payload;
+        const existingProduct = state.items.find(product => product.id === id);
+        if (existingProduct) {
+          Object.assign(existingProduct, updatedProduct);
+        }
       })
   }
 });
