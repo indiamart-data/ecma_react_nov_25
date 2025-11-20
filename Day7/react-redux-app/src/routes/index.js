@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 // Eager Loading
 import LoaderAnimation from "../components/common/LoaderAnimation";
+import ProductsComponent from "../components/products/ProductsComponent";
 
 // Lazy Loading
 const AboutComponent = lazy(() => import("../components/about/AboutComponent"));
@@ -16,6 +17,7 @@ export default (
             <Route path="/" element={<HomeComponent />} />
             <Route path="/about" element={<AboutComponent />} />
             <Route path="/counter" element={<CounterRoot />} />
+            <Route path="/products" element={<ProductsComponent />} />
             <Route path="*" element={<NoMatchComponent />} />
         </Routes>
     </Suspense>
