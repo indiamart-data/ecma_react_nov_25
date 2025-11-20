@@ -4,6 +4,7 @@ import { deleteProduct, fetchProducts } from "../../features/products/productsSl
 import ProductListComponent from "./ProductListComponent";
 
 import { useLocation } from "react-router-dom";
+import { useReplaceHistoryState } from "../../hooks/useReplaceHistoryState";
 import ConfirmModal from '../common/ConfirmModal';
 import LoaderAnimation from '../common/LoaderAnimation';
 import ToastNotification from '../common/ToastNotification';
@@ -21,13 +22,17 @@ const ProductsComponent = () => {
     const [toast, setToast] = useState({ show: false, message: '', type: 'info' });
     const [productToDelete, setproductToDelete] = useState(false);
 
+    const replaceState = useReplaceHistoryState();
+
     // Handle toast from navigation state (insert/update success)
     useEffect(() => {
         if (location.state?.toast) {
             setToast({ ...location.state.toast, show: true });
+            // window.history.replaceState({}, document.title);
+            replaceState();
         }
     }, [location]);
-
+// 
     useEffect(() => {
         if (status === 'idle')
             dispatch(fetchProducts());
