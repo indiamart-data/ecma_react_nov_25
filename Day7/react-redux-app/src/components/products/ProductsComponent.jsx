@@ -31,7 +31,7 @@ const ProductsComponent = () => {
             // window.history.replaceState({}, document.title);
             replaceState();
         }
-    }, [location]);
+    }, [location, replaceState]);
 // 
     useEffect(() => {
         if (status === 'idle')
