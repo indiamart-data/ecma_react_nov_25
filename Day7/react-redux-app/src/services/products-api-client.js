@@ -1,91 +1,49 @@
 const url = process.env.REACT_APP_PRODUCTS_API_URL;
 
 const productAPIClient = {
-    getAllProducts: function () {
-        var promise = new Promise((resolve, reject) => {
-            return fetch(url).then((res) => {
-                var result = res.json();
-                result.then((jResult) => {
-                    resolve(jResult);
-                }, (err) => {
-                    reject("JSON Parse Error");
-                });
-            }).catch((err) => {
-                console.log(err);
-                reject("Error connecting to the API");
-            });
-        });
-
-        return promise;
+    getAllProducts: async function () {
+        const res = await fetch(url);
+        if (!res.ok) {
+            throw new Error(`HTTP error: ${res.status}`);
+        }
+        return res.json();
     },
 
-    insertProduct: function (p) {
-        const request = new Request(url, {
+    insertProduct: async function (p) {
+        const res = await fetch(url, {
             method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(p)
         });
-
-        var promise = new Promise((resolve, reject) => {
-            return fetch(request).then(res => {
-                res.json().then((jResult) => {
-                    resolve(jResult);
-                }, (err) => {
-                    reject("JSON Parse Error");
-                })
-            }).catch(error => {
-                reject("Error connecting to the API");
-            });
-        });
-
-        return promise;
+        if (!res.ok) {
+            throw new Error(`HTTP error: ${res.status}`);
+        }
+        return res.json();
     },
 
-    updateProduct: function (p) {
-        const request = new Request(url + "/" + p.id, {
+    updateProduct: async function (p) {
+        const res = await fetch(`${url}/${p.id}`, {
             method: 'PUT',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(p)
         });
-
-        var promise = new Promise((resolve, reject) => {
-            return fetch(request).then(res => {
-                res.json().then((jResult) => {
-                    resolve(jResult);
-                }, (err) => {
-                    reject("JSON Parse Error");
-                })
-            }).catch(error => {
-                reject("Error connecting to the API");
-            });
-        });
-
-        return promise;
+        if (!res.ok) {
+            throw new Error(`HTTP error: ${res.status}`);
+        }
+        return res.json();
     },
 
-    deleteProduct: function (p) {
-        const request = new Request(url + "/" + p.id, {
+    deleteProduct: async function (p) {
+        const res = await fetch(`${url}/${p.id}`, {
             method: 'DELETE'
         });
-
-        var promise = new Promise((resolve, reject) => {
-            return fetch(request).then(res => {
-                res.json().then(() => {
-                    resolve({ id: p.id, message: "Record Deleted" });
-                }, (err) => {
-                    reject("JSON Parse Error");
-                })
-            }).catch(error => {
-                reject("Error connecting to the API");
-            });
-        });
-
-        return promise;
+        if (!res.ok) {
+            throw new Error(`HTTP error: ${res.status}`);
+        }
+        // Handle empty response for DELETE
+        const text = await res.text();
+        return text ? JSON.parse(text) : { id: p.id };
     }
-}
+};
 
 export default productAPIClient;
