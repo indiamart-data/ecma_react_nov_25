@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../features/products/productsSlice";
+import { deleteProduct, fetchProducts } from "../../features/products/productsSlice";
 import ProductListComponent from "./ProductListComponent";
 
 import { useLocation } from "react-router-dom";
@@ -48,7 +48,14 @@ const ProductsComponent = () => {
     }
 
     const handleYes = async () => {
-
+        try {
+            await dispatch(deleteProduct(productToDelete.id)).unwrap();
+            setShow(false);
+            setToast({ show: true, message: 'Product deleted successfully', type: 'success' });
+        } catch (error) {
+            setShow(false);
+            setToast({ show: true, message: `Failed to delete product: ${error}`, type: 'danger' });
+        }
     }
 
     if (error) {

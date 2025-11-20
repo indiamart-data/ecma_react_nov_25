@@ -79,6 +79,14 @@ export const updateProduct = createAsyncThunk("products/updateProduct", async (p
   }
 });
 
+export const deleteProduct = createAsyncThunk("products/deleteProduct", async (productId, { rejectWithValue }) => {
+  try {
+    return await productAPIClient.deleteProduct({ id: productId });
+  } catch (error) {
+    return rejectWithValue(error.message || 'Error occurred while deleting product');
+  }
+});
+
 const productsState = {
   items: [],
   status: 'idle',
@@ -113,6 +121,10 @@ export const productsSlice = createSlice({
         if (existingProduct) {
           Object.assign(existingProduct, updatedProduct);
         }
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        const { id } = action.payload;
+        state.items = state.items.filter(product => product.id !== id);
       })
   }
 });

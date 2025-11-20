@@ -11,12 +11,6 @@
       "name": "Item Two",
       "description": "Widget",
       "status": "Available"
-    },
-    {
-      "id": "3",
-      "name": "Widget",
-      "description": "Super Widget",
-      "status": "Not Available"
     }
   ]
 }
